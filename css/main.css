@@ -72,6 +72,7 @@ section {
   align-items: center;
   justify-content: center;
   transition: left 0.3s;
+  z-index: 1;
 }
 
 .nav.active {
@@ -90,13 +91,20 @@ section {
   font-size: 30px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: padding 0.3s;
+}
+
+.nav a.active {
+  color: #fff;
+  padding-left: 30px;
 }
 
 .search_area {
   position: fixed;
   top: -100px;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
   height: 100px;
   display: flex;
   align-items: center;
@@ -110,7 +118,7 @@ section {
 }
 
 .search_area form {
-  width: 40%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -152,6 +160,11 @@ section {
 .info .line {
   height: 3px;
   background: var(--accent);
+  width: 0;
+  transition: width 0.3s;
+}
+
+.info .line.active {
   width: 50%;
 }
 
@@ -181,4 +194,8 @@ section {
 .photo {
   border-radius: 12px;
   overflow: hidden;
+}
+
+#fp-nav ul li a span {
+  background: var(--accent);
 }

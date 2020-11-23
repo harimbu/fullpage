@@ -20,16 +20,18 @@
   <body>
     <!-- 헤더 -->
     <div class="header">
-      <span><i class="xi-bars"></i></span>
-      <span><i class="xi-search"></i></span>
+      <span class="bars"><i class="xi-bars"></i></span>
+      <span class="search"><i class="xi-search"></i></span>
     </div>
 
     <!-- 메뉴 -->
-    <ul class="nav">
-      <li><a href="#">sunt in</a></li>
-      <li><a href="#">qui officia</a></li>
-      <li><a href="#">mollitia animi</a></li>
-      <li><a href="#">beguiled</a></li>
+    <ul id="nav" class="nav">
+      <li>
+        <a data-menuanchor="page1" href="#page1" class="active">sunt in</a>
+      </li>
+      <li><a data-menuanchor="page2" href="#page2">qui officia</a></li>
+      <li><a data-menuanchor="page3" href="#page3">mollitia animi</a></li>
+      <li><a data-menuanchor="page4" href="#page4">beguiled</a></li>
     </ul>
 
     <!-- 검색창 -->
@@ -155,5 +157,41 @@
         </div>
       </div>
     </section>
+
+    <script>
+      // 메뉴
+      var bars = $('.bars')
+      var search = $('.search')
+      var nav = $('.nav')
+      var searchForm = $('.search_area')
+
+      bars.on('click', function () {
+        nav.toggleClass('active')
+
+        if ($(this).find('i').hasClass('xi-bars')) {
+          $(this).find('i').attr('class', 'xi-close')
+        } else {
+          $(this).find('i').attr('class', 'xi-bars')
+        }
+      })
+
+      search.on('click', function () {
+        searchForm.toggleClass('active')
+      })
+
+      // 풀페이지
+      $('#fullpage').fullpage({
+        navigation: true,
+        menu: '#nav',
+        anchors: ['page1', 'page2', 'page3', 'page4'],
+        responsive: 900,
+        onLeave: function () {
+          $('.line').removeClass('active')
+        },
+        afterLoad: function () {
+          $('.line').addClass('active')
+        }
+      })
+    </script>
   </body>
 </html>
